@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Layout Customizer",
+  "version": "1.0",
+  "description": "Customize YouTube's grid layout",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html"
+  }
+} 
