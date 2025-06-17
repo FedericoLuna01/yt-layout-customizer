@@ -1,19 +1,7 @@
-// Define message types
-interface LayoutProperties {
-  maxWidth: number;
-  minWidth: number;
-  rowMargin: number;
-  itemsPerRow: number;
-  itemMargin: number;
-}
-
-interface UpdateLayoutMessage {
-  type: 'UPDATE_LAYOUT';
-  properties: LayoutProperties;
-}
+import type { LayoutSettings } from "@/App";
 
 // Function to apply settings
-function applySettings(settings: any) {
+function applySettings(settings: LayoutSettings) {
   const gridElement = document.querySelector('ytd-rich-grid-renderer') as HTMLElement;
   if (!gridElement) return;
 
@@ -37,34 +25,35 @@ function applySettings(settings: any) {
     '--ytd-rich-grid-item-margin',
     `${settings.itemMargin}px`
   );
+
+  // Apply shorts visibility
+  const shortsElements = document.querySelectorAll('ytd-rich-section-renderer');
+  shortsElements.forEach(element => {
+    (element as HTMLElement).style.display = settings.hideShorts ? 'none' : 'block';
+  });
 }
 
 // Listen for messages from the extension
 chrome.runtime.onMessage.addListener(
   (
-    message: { type: string; settings: any },
-    sender: chrome.runtime.MessageSender,
-    sendResponse: (response?: any) => void
+    message: { type: string; settings: LayoutSettings },
   ) => {
     if (message.type === 'UPDATE_LAYOUT') {
       const { settings } = message;
       applySettings(settings);
-      localStorage.setItem('youtubeLayoutSettings', JSON.stringify(settings));
+      chrome.storage.local.set({ youtubeLayoutSettings: settings });
     }
   }
 );
 
 // Function to check and apply settings
 function checkAndApplySettings() {
-  const savedSettings = localStorage.getItem('youtubeLayoutSettings');
-  if (savedSettings) {
-    const settings = JSON.parse(savedSettings);
-    applySettings(settings);
-  }
+  chrome.storage.local.get(['youtubeLayoutSettings'], (result) => {
+    if (result.youtubeLayoutSettings) {
+      applySettings(result.youtubeLayoutSettings);
+    }
+  });
 }
-
-// Apply settings immediately if the grid is already present
-checkAndApplySettings();
 
 // Watch for YouTube's grid element to be added to the DOM
 const observer = new MutationObserver((mutations) => {
@@ -73,8 +62,6 @@ const observer = new MutationObserver((mutations) => {
       const gridElement = document.querySelector('ytd-rich-grid-renderer');
       if (gridElement) {
         checkAndApplySettings();
-        observer.disconnect();
-        break;
       }
     }
   }
@@ -84,4 +71,4 @@ const observer = new MutationObserver((mutations) => {
 observer.observe(document.body, {
   childList: true,
   subtree: true
-}); 
+});

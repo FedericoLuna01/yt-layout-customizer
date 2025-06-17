@@ -1,22 +1,30 @@
 {
   "manifest_version": 3,
   "name": "YouTube Layout Customizer",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Customize YouTube's grid layout",
+  "icons": {
+    "16": "./icon.png",
+    "48": "./icon.png",
+    "128": "./icon.png"
+  },
   "permissions": [
-    "activeTab",
-    "scripting"
+    "storage",
+    "tabs"
   ],
   "host_permissions": [
-    "https://www.youtube.com/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://www.youtube.com/*"],
-      "js": ["content.js"]
-    }
+    "*://*.youtube.com/*"
   ],
   "action": {
     "default_popup": "index.html"
-  }
-} 
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "https://www.youtube.com/feed/subscriptions"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
