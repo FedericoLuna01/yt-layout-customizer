@@ -86,7 +86,7 @@ export function YouTubeLayoutForm({ settings, setSettings }: {
           <div className='flex items-center gap-2'>
             <RulerDimensionLineIcon className='size-5' />
             <h2 className='text-lg font-semibold'>
-              Video Dimensions
+              Thumbnail Dimensions
             </h2>
           </div>
           <div className='ml-7 space-y-4'>
