@@ -25,27 +25,27 @@ A Chrome extension that allows you to personalize the YouTube layout for a clean
 
 ### Main settings
 
-<div style="display: flex; gap: 10px; margin-bottom: 20px; width: 50%;">
-    <div style="flex: 1;">
+<div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <div >
         <p align="center"><strong>Dark Theme</strong></p>
-        <img src="./screenshots/screenshot-1-dark.png" alt="YouTube Layout Dark Theme" width="100%"/>
+        <img src="./screenshots/screenshot-1-dark.png" alt="YouTube Layout Dark Theme" width="300px"/>
     </div>
-    <div style="flex: 1;">
+    <div >
         <p align="center"><strong>Light Theme</strong></p>
-        <img src="./screenshots/screenshot-1-light.png" alt="YouTube Layout Light Theme" width="100%"/>
+        <img src="./screenshots/screenshot-1-light.png" alt="YouTube Layout Light Theme" width="300px"/>
     </div>
 </div>
 
 ### Visibility settings
 
-<div style="display: flex; gap: 10px; margin-bottom: 20px; width: 50%;">
-    <div style="flex: 1;">
+<div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <div>
         <p align="center"><strong>Dark Theme</strong></p>
-        <img src="./screenshots/screenshot-2-dark.png" alt="YouTube Layout Dark Theme" width="100%"/>
+        <img src="./screenshots/screenshot-2-dark.png" alt="YouTube Layout Dark Theme" width="300px"/>
     </div>
-    <div style="flex: 1;">
+    <div>
         <p align="center"><strong>Light Theme</strong></p>
-        <img src="./screenshots/screenshot-2-light.png" alt="YouTube Layout Light Theme" width="100%"/>
+        <img src="./screenshots/screenshot-2-light.png" alt="YouTube Layout Light Theme" width="300px"/>
     </div>
 </div>
 
